@@ -1,23 +1,40 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <Header :title="title" />
+    <Input placeholder="Search" />
+    <List />
+    <PopularWords />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import Header from "./components/Header.vue";
+import Input from "./components/Input.vue";
+import List from "./components/List.vue";
+import PopularWords from "./components/PopularWords.vue";
 
 export default Vue.extend({
   name: "App",
   components: {
-    HelloWorld
-  }
+    Header,
+    Input,
+    List,
+    PopularWords,
+  },
+  data() {
+    return {
+      title: "AppChance",
+    };
+  },
 });
 </script>
 
 <style lang="scss">
+body {
+  background-color: floralwhite;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -25,5 +42,13 @@ export default Vue.extend({
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+ul {
+  padding-inline-start: 0px;
+}
+
+li {
+  list-style-type: none;
 }
 </style>
