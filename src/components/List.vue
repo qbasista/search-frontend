@@ -1,52 +1,33 @@
 <template>
   <div id="list">
-    <p>Total: 99,888,777,666</p>
-    <ul>
+    <p>Total: {{ query.total_tesult }}</p>
+    <ul v-if="results.length">
       <ListItem
-        v-for="(result, index) in results"
-        :result="result"
+        v-for="({ fields }, index) in results"
+        :result="fields"
         :key="index"
       />
     </ul>
+    <Info info="Not found" v-else />
   </div>
 </template>
 
 <script lang='ts'>
+import Vue from "vue";
+import { mapState } from "vuex";
 import ListItem from "./ListItem.vue";
+import Info from "./Info.vue";
 
-export default {
+export default Vue.extend({
   name: "List",
   components: {
     ListItem,
+    Info,
   },
-  data() {
-    return {
-      results: [
-        {
-          title: "Some title",
-          desc:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-          position: 1,
-          url: "https://www.google.com",
-        },
-        {
-          title: "Some title",
-          desc:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-          position: 2,
-          url: "https://www.google.com",
-        },
-        {
-          title: "Some title",
-          desc:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-          position: 3,
-          url: "https://www.google.com",
-        },
-      ],
-    };
+  computed: {
+    ...mapState(["results", "query"]),
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

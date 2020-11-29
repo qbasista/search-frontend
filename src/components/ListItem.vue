@@ -1,7 +1,7 @@
 <template functional>
   <li>
-    <a :href="props.result.url">
-      <h2 class="title">{{ props.result.title }}</h2>
+    <a :href="props.result.link">
+      <h3 class="title">{{ props.result.title }}</h3>
       <p class="position">Position: {{ props.result.position }}</p>
       <p>{{ props.result.desc }}</p>
     </a>
@@ -9,9 +9,11 @@
 </template>
 
 <script lang='ts'>
-export default {
+import Vue from "vue";
+
+export default Vue.extend({
   name: "ItemList",
-};
+});
 </script>
 
 <style lang="scss" scoped>

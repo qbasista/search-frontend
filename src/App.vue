@@ -1,31 +1,17 @@
 <template>
   <div id="app">
-    <Header :title="title" />
-    <Input placeholder="Search" />
-    <List />
-    <PopularWords />
+    <SearchView />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import Header from "./components/Header.vue";
-import Input from "./components/Input.vue";
-import List from "./components/List.vue";
-import PopularWords from "./components/PopularWords.vue";
+import SearchView from "./views/SearchPage.vue";
 
 export default Vue.extend({
   name: "App",
   components: {
-    Header,
-    Input,
-    List,
-    PopularWords,
-  },
-  data() {
-    return {
-      title: "AppChance",
-    };
+    SearchView,
   },
 });
 </script>

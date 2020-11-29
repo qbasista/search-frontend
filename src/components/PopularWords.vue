@@ -2,22 +2,21 @@
   <div>
     <h2>Popular words</h2>
     <ul class="popular">
-      <li>John</li>
-      <li>Eliza</li>
-      <li>Book</li>
-      <li>Horse</li>
-      <li>House</li>
-      <li>Gregory</li>
-      <li>Top</li>
-      <li>John</li>
-      <li>Eliza</li>
-      <li>Book</li>
+      <li v-for="word in popular_words" :key="word">{{ word }}</li>
     </ul>
   </div>
 </template>
 
-<script>
-export default {};
+<script lang='ts'>
+import Vue from "vue";
+import { mapState } from "vuex";
+
+export default Vue.extend({
+  name: "PopularWords",
+  computed: {
+    ...mapState(["popular_words"]),
+  },
+});
 </script>
 
 <style lang="scss" scoped>
