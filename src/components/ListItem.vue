@@ -5,10 +5,11 @@
       <p class="position">Position: {{ props.result.position }}</p>
       <p>{{ props.result.desc }}</p>
     </a>
+    <hr />
   </li>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import Vue from "vue";
 
 export default Vue.extend({

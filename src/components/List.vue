@@ -1,10 +1,10 @@
 <template>
   <div id="list">
-    <p>Total: {{ query.total_tesult }}</p>
+    <p>Total: {{ totalResult }}</p>
     <ul v-if="results.length">
       <ListItem
-        v-for="({ fields }, index) in results"
-        :result="fields"
+        v-for="(result, index) in results"
+        :result="result"
         :key="index"
       />
     </ul>
@@ -12,9 +12,9 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import Vue from "vue";
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 import ListItem from "./ListItem.vue";
 import Info from "./Info.vue";
 
@@ -25,7 +25,13 @@ export default Vue.extend({
     Info,
   },
   computed: {
-    ...mapState(["results", "query"]),
+    ...mapState(["results", "totalResult"]),
+  },
+  methods: {
+    ...mapActions(["search"]),
+  },
+  created() {
+    this.search("books");
   },
 });
 </script>
