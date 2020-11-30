@@ -23,6 +23,9 @@ const mutations: MutationTree<RootState> = {
   SET_STATUS(state, payload: string) {
     state.info = payload;
   },
+  UPDATE_INPUT(state, payload: string) {
+    state.input = payload.trim();
+  },
 };
 
 export default mutations;

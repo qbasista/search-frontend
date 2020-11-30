@@ -1,10 +1,21 @@
 <template>
-  <input class="search" type="text" />
+  <input class="search" type="text" v-model="input" />
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import Vue from "vue";
-export default Vue.extend({});
+export default Vue.extend({
+  computed: {
+    input: {
+      get(): string {
+        return this.$store.state.input;
+      },
+      set(value: any): void {
+        this.$store.commit("UPDATE_INPUT", value);
+      },
+    },
+  },
+});
 </script>
 
 <style lang="scss" scoped>

@@ -1,7 +1,7 @@
 <template>
   <div id="list">
-    <p>Total: {{ totalResult }}</p>
-    <ul v-if="results.length">
+    <p v-if="areResults">Total: {{ totalResults }}</p>
+    <ul v-if="areResults">
       <ListItem
         v-for="(result, index) in results"
         :result="result"
@@ -14,7 +14,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
 import ListItem from "./ListItem.vue";
 import Info from "./Info.vue";
 
@@ -24,14 +24,31 @@ export default Vue.extend({
     ListItem,
     Info,
   },
+  data() {
+    return {
+      timer: 0,
+    };
+  },
   computed: {
-    ...mapState(["results", "totalResult"]),
+    ...mapState(["results", "totalResults", "input"]),
+    ...mapGetters(["areResults"]),
   },
   methods: {
     ...mapActions(["search"]),
+    searchTimeOut() {
+      if (this.timer) {
+        clearTimeout(this.timer);
+        this.timer = 0;
+      }
+      this.timer = setTimeout(() => {
+        this.search(this.input);
+      }, 500);
+    },
   },
-  created() {
-    this.search("books");
+  watch: {
+    input() {
+      this.searchTimeOut();
+    },
   },
 });
 </script>

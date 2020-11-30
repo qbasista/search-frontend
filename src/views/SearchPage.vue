@@ -4,7 +4,7 @@
     <Input placeholder="Search" />
     <template v-if="true">
       <List />
-      <PopularWords />
+      <PopularWords v-if="areResults" />
     </template>
   </div>
 </template>
@@ -15,6 +15,7 @@ import Header from "../components/Header";
 import Input from "../components/Input";
 import List from "../components/List";
 import PopularWords from "../components/PopularWords";
+import { mapGetters } from "vuex";
 
 export default Vue.extend({
   name: "SearchView",
@@ -29,8 +30,10 @@ export default Vue.extend({
       title: "AppChance",
     };
   },
+  computed: {
+    ...mapGetters(["areResults"]),
+  },
 });
 </script>
 
-<style>
-</style>
+<style></style>
