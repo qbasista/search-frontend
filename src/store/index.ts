@@ -9,7 +9,7 @@ import { RootState } from "./types";
 
 export default new Vuex.Store<RootState>({
   state: {
-    info: "Search...",
+    info: "Try!",
     input: "",
     totalResults: 0,
     results: [],

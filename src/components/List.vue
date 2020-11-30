@@ -8,7 +8,7 @@
         :key="index"
       />
     </ul>
-    <Info info="Not found" v-else />
+    <Info :info="info" v-else />
   </div>
 </template>
 
@@ -30,7 +30,7 @@ export default Vue.extend({
     };
   },
   computed: {
-    ...mapState(["results", "totalResults", "input"]),
+    ...mapState(["results", "totalResults", "input", "info"]),
     ...mapGetters(["areResults"]),
   },
   methods: {
@@ -41,7 +41,7 @@ export default Vue.extend({
         this.timer = 0;
       }
       this.timer = setTimeout(() => {
-        this.search(this.input);
+        this.input && this.search(this.input.toLowerCase());
       }, 500);
     },
   },
