@@ -2,10 +2,8 @@
   <div id="search-view">
     <Header :title="title" />
     <Input placeholder="Search" />
-    <template v-if="true">
-      <List />
-      <PopularWords v-if="areResults" />
-    </template>
+    <List />
+    <PopularWords v-if="areResults" />
   </div>
 </template>
 
